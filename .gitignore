@@ -1,0 +1,25 @@
+
+# ./ executable files
+*
+!/**/
+!*.*
+
+# Ignore Visual Studio Code files and folders
+.vscode/
+*.code-workspace
+
+# Ignore object files
+*.o
+*.ko
+*.ppu
+
+# Ignore executables
+*.exe
+*.out
+*.app
+
+# Ignore without extension
+.DS_Store
+Thumbs.db
+
+
