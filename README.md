@@ -143,3 +143,12 @@ procedure neighbors(g: edgeWeightedDigraph; node: string; var lista: tListaDoble
 Este procedimiento debe crear una lista con todos los nodos adyacentes (vecinos) al nodo especificado.
 
 Para hacer este ejercicio necesitaras utilizar la estructura de datos `tListaDoble` que se encuentra en el fichero `uListaEnlazadaDoble.pas`. Esta estructura es una lista doblemente enlazada que permite almacenar los nodos adyacentes de forma ordenada. Echa un vistazo a su interfaz para entender cómo funciona y utiliza los métodos que necesites para implementar el procedimiento `neighbors`.
+
+
+# Ejercicio 2: Implementación de un grafo no dirigido y ponderado (Avanzado)
+En estos ejercicios vamos a crear nuestro propio grafo ponderado y no dirigido. Para ello, vamos a utilizar los siguientes ficheros:
+- `ejercicio2.pas`: programa principal que utiliza la implementación del grafo y que contiene distintos métodos para comprobar su funcionamiento.
+- `uListEdgeWeightedGraph.pas`: nos proporciona la interfaz de un grafo no dirigido y ponderado. Debes ser tú quien implemente la funcionalidad de este grafo. 
+- `uListaEnlazadaSimple.pas`: deberas basarte en esta estructura para implementar el grafo. Concretamente, necesitarás crear dos listas. Una lista de nodos y una lista de nodos adyacentes para cada nodo. Deberás modificar este fichero para adaptarlo a tus necesidades, seguramente necesitarás añadir nuevos métodos.
+
+Una vez que hayas implementado el grafo, deberás probarlo con el programa `ejercicio2.pas`. Este programa contiene varios métodos de prueba que verifican el correcto funcionamiento de las operaciones básicas del grafo. Asegúrate de que todos los métodos de prueba se ejecutan correctamente y que el grafo se comporta como se espera.
