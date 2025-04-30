@@ -11,6 +11,7 @@
 En estos ejercicios vamos a trabajar con un grafo dirigido y ponderado. Para ello, vamos a utilizar los dos siguientes ficheros:
 - `uMatrixEdgeWeightedDigraph.pas`: implementación de un grafo dirigido y ponderado.
 - `ejercicio1.pas`: programa principal que utiliza la implementación del grafo y que contiene distintos métodos para comprobar su funcionamiento.
+- `uListaEnlazadaDoble.pas`: implementación de una lista doblemente enlazada que se utilizará para almacenar los nodos adyacentes.
 
 ## Ejercicio 1.1: Echa un vistazo al programa principal
 En el programa principal `ejercicio1.pas` se encuentran los siguientes métodos de prueba, diseñados para verificar el correcto funcionamiento de las operaciones básicas del grafo.
