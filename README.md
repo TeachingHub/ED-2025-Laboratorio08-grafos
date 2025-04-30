@@ -149,6 +149,12 @@ Para hacer este ejercicio necesitaras utilizar la estructura de datos `tListaDob
 En estos ejercicios vamos a crear nuestro propio grafo ponderado y no dirigido. Para ello, vamos a utilizar los siguientes ficheros:
 - `ejercicio2.pas`: programa principal que utiliza la implementación del grafo y que contiene distintos métodos para comprobar su funcionamiento.
 - `uListEdgeWeightedGraph.pas`: nos proporciona la interfaz de un grafo no dirigido y ponderado. Debes ser tú quien implemente la funcionalidad de este grafo. 
-- `uListaEnlazadaSimple.pas`: deberas basarte en esta estructura para implementar el grafo. Concretamente, necesitarás crear dos listas. Una lista de nodos y una lista de nodos adyacentes para cada nodo. Deberás modificar este fichero para adaptarlo a tus necesidades, seguramente necesitarás añadir nuevos métodos.
+- `uListaEnlazadaSimple.pas`: deberás basarte en esta estructura para implementar el grafo. Concretamente, necesitarás crear dos listas. Una lista de nodos y una lista de nodos adyacentes para cada nodo. Deberás modificar este fichero para adaptarlo a tus necesidades, seguramente necesitarás añadir nuevos métodos.
 
 Una vez que hayas implementado el grafo, deberás probarlo con el programa `ejercicio2.pas`. Este programa contiene varios métodos de prueba que verifican el correcto funcionamiento de las operaciones básicas del grafo. Asegúrate de que todos los métodos de prueba se ejecutan correctamente y que el grafo se comporta como se espera.
+
+Una posible de implementación de este grafo se podría basar en la estructura de los nodos presentada en la siguiente imagen. 
+
+![10-ejercicios-lab/9-grafos/figs/ady_graph.png](figs/ady_graph.png)
+
+Sin embargo, puedes optar por una implementación diferente si lo prefieres. Lo importante es que el grafo funcione correctamente y pase todas las pruebas del programa `ejercicio2.pas`.
