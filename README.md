@@ -111,13 +111,13 @@ function weighted_outdegree(var g: edgeWeightedDigraph; node: string): integer;
 ```
 Esta función calcula la suma de los pesos de los arcos que salen del nodo especificado.
 
-## Ejercicio 1.4: Verificación de bucles
+## Ejercicio 1.4: Verificación de autoenlaces
 Para este ejercicio, debes implementar la siguiente función:
 
 ```pascal
 function has_self_loops(g: edgeWeightedDigraph): boolean;
 ```
-Esta función debe verificar si algún nodo del grafo tiene un arco dirigido hacia sí mismo (un bucle).
+Esta función debe verificar si algún nodo del grafo tiene un arco dirigido hacia sí mismo (un autoenlace). Calcula la complejidad de tu implementación y asegúrate de que tiene como máximo complejidad de tiempo esperada: O(n) y el espacio auxiliar es constante: O(1)
 
 ## Ejercicio 1.5: Cálculo de la densidad del grafo
 Para este ejercicio, debes implementar la siguiente función:
@@ -145,6 +145,15 @@ Este procedimiento debe crear una lista con todos los nodos adyacentes (vecinos)
 
 Para hacer este ejercicio necesitaras utilizar la estructura de datos `tListaDoble` que se encuentra en el fichero `uListaEnlazadaDoble.pas`. Esta estructura es una lista doblemente enlazada que permite almacenar los nodos adyacentes de forma ordenada. Echa un vistazo a su interfaz para entender cómo funciona y utiliza los métodos que necesites para implementar el procedimiento `neighbors`.
 
+## Ejercicio 1.8: Coeficiente de clustering (agrupamiento) de un nodo
+Para este ejercicio, debes implementar el siguiente procedimiento:
+
+```pascal
+function clustering_coef(g: edgeWeightedDigraph; node:string): real;
+```
+Añade al TAD una función que permita calcular el coeficiente de agrupamiento (o clustering) de un nodo. Dicho coeficiente (“C” en la Figura) se calcula como la densidad del grafo que forman los nodos de su vecindario. Prográmalo y calcula la complejidad de tu solución.
+
+![imagen](https://github.com/user-attachments/assets/bdcfa409-32eb-4840-902d-d43cb5c6bb1c)
 
 # Ejercicio 2: Implementación de un grafo no dirigido y ponderado (Avanzado)
 En estos ejercicios vamos a crear nuestro propio grafo ponderado y no dirigido. Para ello, vamos a utilizar los siguientes ficheros:
