@@ -204,7 +204,7 @@ implementation
       write(nodo^.node_label,' -> ');
       nodo_ady:= nodo^.adjacents;
       while nodo_ady<>NIL do begin
-        write(nodo_ady^.nodeTo_label,' , ');
+        write(nodo_ady^.nodeTo_label, '(',nodo_ady^.weight, ') , ');
         nodo_ady:= nodo_ady^.next
       end;
       writeln('/');
