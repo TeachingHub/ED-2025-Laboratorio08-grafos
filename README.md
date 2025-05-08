@@ -7,6 +7,31 @@
 | Universidad | Universidad Rey Juan Carlos |
 | Curso | 2024/2025 |
 
+
+<!-- TOC -->
+
+- [Ejercicios de Grafos](#ejercicios-de-grafos)
+        - [Información del Proyecto](#informaci%C3%B3n-del-proyecto)
+- [Ejercicio 1: Implementación de métodos básicos de consulta de un grafo](#ejercicio-1-implementaci%C3%B3n-de-m%C3%A9todos-b%C3%A1sicos-de-consulta-de-un-grafo)
+    - [Ejercicio 1.1: Echa un vistazo al programa principal](#ejercicio-11-echa-un-vistazo-al-programa-principal)
+        - [Métodos de prueba incluidos:](#m%C3%A9todos-de-prueba-incluidos)
+    - [Ejercicio 1.2: Implementación de funciones de grado](#ejercicio-12-implementaci%C3%B3n-de-funciones-de-grado)
+    - [Ejercicio 1.3: Implementación de funciones de grado ponderado](#ejercicio-13-implementaci%C3%B3n-de-funciones-de-grado-ponderado)
+    - [Ejercicio 1.4: Verificación de bucles](#ejercicio-14-verificaci%C3%B3n-de-bucles)
+    - [Ejercicio 1.5: Cálculo de la densidad del grafo](#ejercicio-15-c%C3%A1lculo-de-la-densidad-del-grafo)
+    - [Ejercicio 1.6: Verificación de grafo completo](#ejercicio-16-verificaci%C3%B3n-de-grafo-completo)
+    - [Ejercicio 1.7: Lista de vecinos de un nodo](#ejercicio-17-lista-de-vecinos-de-un-nodo)
+    - [Ejercicio 1.8: Coeficiente de agrupamiento (clustering) de un nodo](#ejercicio-18-coeficiente-de-agrupamiento-clustering-de-un-nodo)
+- [Ejercicio 2: Implementación de un grafo no dirigido y ponderado Avanzado](#ejercicio-2-implementaci%C3%B3n-de-un-grafo-no-dirigido-y-ponderado-avanzado)
+- [Ejercicio 3: Implementación de métodos adicionales para grafos dirigidos y ponderados](#ejercicio-3-implementaci%C3%B3n-de-m%C3%A9todos-adicionales-para-grafos-dirigidos-y-ponderados)
+    - [Ejercicio 3.1: Cálculo del grado de entrada indegree](#ejercicio-31-c%C3%A1lculo-del-grado-de-entrada-indegree)
+    - [Ejercicio 3.2: Cálculo del grado de salida outdegree](#ejercicio-32-c%C3%A1lculo-del-grado-de-salida-outdegree)
+    - [Ejercicio 3.3: Cálculo del slack del grado de salida](#ejercicio-33-c%C3%A1lculo-del-slack-del-grado-de-salida)
+    - [Ejercicio 3.4: Cálculo del grado de entrada ponderado](#ejercicio-34-c%C3%A1lculo-del-grado-de-entrada-ponderado)
+
+<!-- /TOC -->
+
+
 # Ejercicio 1: Implementación de métodos básicos de consulta de un grafo
 En estos ejercicios vamos a trabajar con un grafo dirigido y ponderado. Para ello, vamos a utilizar los dos siguientes ficheros:
 - `uMatrixEdgeWeightedDigraph.pas`: implementación de un grafo dirigido y ponderado.
@@ -168,3 +193,53 @@ Una posible de implementación de este grafo se podría basar en la estructura d
 ![10-ejercicios-lab/9-grafos/figs/ady_graph.png](figs/ady_graph.png)
 
 Sin embargo, puedes optar por una implementación diferente si lo prefieres. Lo importante es que el grafo funcione correctamente y pase todas las pruebas del programa `ejercicio2.pas`.
+
+
+# Ejercicio 3: Implementación de métodos adicionales para grafos dirigidos y ponderados
+
+En estos ejercicios trabajaremos con un grafo dirigido y ponderado implementado mediante listas de adyacencia. 
+Para ello, utilizaremos los siguientes ficheros:
+- `uMatrixEdgeWeightedDigraph.pas`: implementación de un grafo dirigido y ponderado.
+- `ejercicio3.pas`: programa principal que utiliza la implementación del grafo y que contiene distintos métodos para comprobar su funcionamiento.
+
+En primer lugar, debes ejecutar el programa `ejercicio3.pas` para comprobar que el grafo se inicializa correctamente, puedes probar las funciones existentes y dibujar el grafo de prueba.
+
+## Ejercicio 3.1: Cálculo del grado de entrada (indegree)
+
+Implementa la función `indegree` que calcula el número de arcos que llegan a un nodo específico:
+
+```pascal
+function indegree(g: edgeWeightedDigraph; node_label: string): integer;
+```
+
+Esta función debe recorrer todo el grafo y contar cuántos nodos tienen un arco dirigido hacia el nodo especificado.
+
+## Ejercicio 3.2: Cálculo del grado de salida (outdegree)
+
+Implementa la función `outdegree` que calcula el número de arcos que salen de un nodo específico:
+
+```pascal
+function outdegree(g: edgeWeightedDigraph; node_label: string): integer;
+```
+
+Esta función debe contar el número de nodos adyacentes al nodo especificado (excluyendo posibles bucles).
+
+## Ejercicio 3.3: Cálculo del slack del grado de salida
+
+Implementa la función `slack_outdegree` que calcula la diferencia entre el máximo y el mínimo de los grados de salida de todos los nodos del grafo:
+
+```pascal
+function slack_outdegree(g: edgeWeightedDigraph): integer;
+```
+
+Esta función debe encontrar el nodo con el mayor grado de salida y el nodo con el menor grado de salida, y calcular la diferencia entre estos dos valores.
+
+## Ejercicio 3.4: Cálculo del grado de entrada ponderado
+
+Implementa la función `weighted_indegree` que calcula la suma de los pesos de los arcos que llegan a un nodo específico:
+
+```pascal
+function weighted_indegree(g: edgeWeightedDigraph; node_label: string): integer;
+```
+
+Esta función debe recorrer todo el grafo, identificar los arcos que apuntan al nodo especificado, y sumar sus pesos.
