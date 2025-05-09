@@ -193,8 +193,8 @@ implementation
       end
   end;
 
-  
-  
+
+
   procedure show(g: edgeWeightedDigraph);
   var nodo: ^tNode;
       nodo_ady: ^tAdjacencyNode;
@@ -214,40 +214,89 @@ implementation
 
 
 
-
-
-
   
   { Ejercicio 3.1}
   { El grado de entrada de un nodo es la cantidad de arcos que llegan a él.}
   function indegree(g:edgeWeightedDigraph; node_label:string): integer;
+  var
+    node: ^tNode;
+    nodo_ady: ^tAdjacencyNode;
   begin
-    writeln('No implementado');
+    indegree:= 0;
+    if node_in_graph(g,node_label) then begin
+      node:= g;
+      while node<>NIL do begin
+        nodo_ady:= node^.adjacents;
+        while (node^.node_label<>node_label) and (nodo_ady<>NIL) do begin
+          if node_label = nodo_ady^.nodeTo_label then indegree := indegree + 1;
+          nodo_ady := nodo_ady^.next
+        end;
+        node:= node^.next
+      end
+    end
   end;
 
   { Ejercicio 3.2}
   { El outdegree de un nodo es la cantidad de arcos que salen de él.}
   function outdegree(g:edgeWeightedDigraph; node_label:string): integer;
+  var
+    node: ^tNode;
+    nodo_ady: ^tAdjacencyNode;
   begin
-    writeln('No implementado');
+    node:= get_node(g,node_label);
+    outdegree:= 0;
+    if node<>NIL then begin
+      nodo_ady:= node^.adjacents;
+      while nodo_ady<>NIL do begin
+        if node_label <> nodo_ady^.nodeTo_label then outdegree := outdegree + 1;
+        nodo_ady := nodo_ady^.next
+      end
+    end
   end;
 
-
+  
 
   { Ejercicio 3.3}
   { El slack outdegree es la diferencia entre el máximo y el mínimo de los outdegree de los nodos del grafo.}
   { Se asume que el grafo no está vacío.} 
   function slack_outdegree(g:edgeWeightedDigraph):integer;
+  var
+     maximo,minimo,outdegree_actual:integer;
+     nodo_actual: edgeWeightedDigraph;
   begin
-    writeln('No implementado');
+    maximo:= -MAXINT;
+    minimo:=  MAXINT;
+    nodo_actual:= g;
+    while nodo_actual<>nil do begin
+        outdegree_actual:= outdegree(g,nodo_actual^.node_label);
+        if outdegree_actual > maximo then maximo:= outdegree_actual;
+        if outdegree_actual < minimo then minimo:= outdegree_actual;
+        nodo_actual:= nodo_actual^.next;
+    end;
+    slack_outdegree:= maximo - minimo;
   end;
+
 
   
   { Ejercicio 3.4}
   { El grado de salida de un nodo es la cantidad de arcos que salen de él.}
   function weighted_indegree(g: edgeWeightedDigraph; node_label:string): integer;
+  var
+    node: ^tNode;
+    nodo_ady: ^tAdjacencyNode;
   begin
-    writeln('No implementado');
+    weighted_indegree:= 0;
+    if node_in_graph(g,node_label) then begin
+      node:= g;
+      while node<>NIL do begin
+        nodo_ady:= node^.adjacents;
+        while (node^.node_label<>node_label) and (nodo_ady<>NIL) do begin
+          if node_label = nodo_ady^.nodeTo_label then weighted_indegree := weighted_indegree + strToInt(nodo_ady^.weight);
+          nodo_ady := nodo_ady^.next
+        end;
+        node:= node^.next
+      end
+    end
   end;
 
 end.

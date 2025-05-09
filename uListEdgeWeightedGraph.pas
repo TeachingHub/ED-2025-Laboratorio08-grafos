@@ -1,12 +1,11 @@
 unit uListEdgeWeightedGraph;
 
 interface
-
-  uses sysutils;
+  uses sysutils, uListOfNodes, uListOfAdjacents;
 
   type
     edgeWeightedGraph = record
-
+       list_of_nodes :   tLisfNodes;
     end;
 
   { -- FUNCIONES DE MANIPULACION DEL GRAFO -- }
@@ -71,6 +70,117 @@ interface
 
 implementation
 
+  { Inicializa el grafo vacío }
+  procedure initialize(var g: edgeWeightedGraph);
+  begin
+    uListOfNodes.initialize(g.list_of_nodes); // Inicializa la lista de adyacentes
+  end;
+
+  { Agrega un nodo al grafo }
+  procedure add_node(var g: edgeWeightedGraph; node: string);
+  begin
+    if not node_in_graph(g, node) then
+    begin
+      uListOfNodes.insert_at_end(g.list_of_nodes, node); // Agrega el nodo a la lista de adyacentes
+    end;
+  end;
+
+  { Agrega un arco al grafo }
+  procedure add_edge(var g: edgeWeightedGraph; n1, n2: string; weight: integer);
+  var
+    list_of_nodes : tLisfNodes;
+  begin
+    list_of_nodes := g.list_of_nodes;
+    if (node_in_graph(g, n1)) and (node_in_graph(g, n2) and (not edge_in_graph(g, n1, n2))) then
+        add_adjacent(list_of_nodes, n1, n2, weight); // Agrega el arco entre los nodos
+        add_adjacent(list_of_nodes, n2, n1, weight); // Agrega el arco inverso si es un grafo no dirigido
+  end;
+
+  { Elimina un nodo del grafo }
+  procedure delete_node(var g: edgeWeightedGraph; node: string);
+  var
+    list_of_nodes : tLisfNodes;
+  begin
+    list_of_nodes := g.list_of_nodes;
+    if node_in_graph(g, node) then
+        uListOfNodes.delete(list_of_nodes, node);
+  end;
+
+  procedure delete_edge(var g: edgeWeightedGraph; n1, n2: string);
+  var
+    list_of_nodes : tLisfNodes;
+  begin
+    list_of_nodes := g.list_of_nodes;
+    if (node_in_graph(g, n1)) and (node_in_graph(g, n2)) then
+    begin
+        uListOfNodes.delete_edge(list_of_nodes, n1, n2);
+        uListOfNodes.delete_edge(list_of_nodes, n2, n1); // Elimina el arco inverso si es un grafo no dirigido
+    end;
+  end;
+
+
+  function is_empty(g: edgeWeightedGraph): boolean;
+  var
+    list_of_nodes : tLisfNodes;
+  begin
+    list_of_nodes := g.list_of_nodes;
+    is_empty := uListOfNodes.num_elems(list_of_nodes) = 0;
+  end;  
+
+  function num_nodes(g: edgeWeightedGraph): integer;
+  var
+    list_of_nodes : tLisfNodes;
+  begin
+    list_of_nodes := g.list_of_nodes;
+    num_nodes := uListOfNodes.num_elems(list_of_nodes); // Devuelve el número de nodos en la lista
+  end;
+  
+  function node_in_graph(g: edgeWeightedGraph; node: string): boolean;
+  var
+    list_of_nodes : tLisfNodes;
+  begin
+    list_of_nodes := g.list_of_nodes;
+    node_in_graph := uListOfNodes.in_list(list_of_nodes, node); // Verifica si el nodo está en la lista
+  end;
+
+
+  function edge_in_graph(g: edgeWeightedGraph; n1, n2: string): boolean;
+  var
+    list_of_nodes : tLisfNodes;
+  begin
+    list_of_nodes := g.list_of_nodes;
+    edge_in_graph := uListOfNodes.is_adjacent(list_of_nodes, n1, n2); // Verifica si el arco está en la lista
+  end;
+
+
+  function edge_weight(g: edgeWeightedGraph; n1, n2: string): integer;
+  var
+    list_of_nodes : tLisfNodes;
+  begin
+    list_of_nodes := g.list_of_nodes;
+    if edge_in_graph(g, n1, n2) then
+      edge_weight := uListOfNodes.get_weight(list_of_nodes, n1, n2) // Obtiene el peso del arco
+    else
+      edge_weight := 0; // Si no existe el arco, devuelve 0
+  end;
+
+  function adjacent(g: edgeWeightedGraph; n1, n2: string): boolean;
+  begin
+    adjacent := edge_in_graph(g, n1, n2); // Verifica si los nodos son adyacentes
+  end;  
+
+  function degree(var g: edgeWeightedGraph; node: string): integer;
+  var
+    list_of_nodes : tLisfNodes;
+  begin
+    list_of_nodes := g.list_of_nodes;
+    degree := uListOfNodes.get_degree(list_of_nodes, node); // Obtiene el grado del nodo
+  end;
+
+  procedure show(g: edgeWeightedGraph);
+  begin
+    writeln(uListOfNodes.to_string(g.list_of_nodes)); // Muestra la lista de nodos
+  end;
 
 end.
 

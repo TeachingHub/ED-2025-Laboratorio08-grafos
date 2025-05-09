@@ -244,71 +244,119 @@ implementation
   
   { Ejercicio 1.2 a) }
   function outdegree(var g: edgeWeightedDigraph; node:string): integer;
+  var i,node_index:integer;
   begin
-      writeln('No implementado');
-      outdegree:= 0;
+     outdegree:= 0;
+     node_index:= get_index(g,node);
+     for i:= 1 to g.num_nodes do begin
+       if g.matrix[node_index,i]<>'inf' then outdegree:= outdegree+1
+     end;
   end;
 
   { Ejercicio 1.2 b) }
   function indegree(var g: edgeWeightedDigraph; node:string): integer;
+  var i,node_index:integer;
   begin
-      writeln('No implementado');
-      indegree:= 0;
+     indegree:= 0;
+     node_index:= get_index(g,node);
+     for i:= 1 to g.num_nodes do
+       if g.matrix[i,node_index]<>'inf' then indegree:= indegree+1
   end;
 
   
     
   { Ejercicio 1.2 c) }
   function degree(var g: edgeWeightedDigraph; node:string): integer;
+  var i,node_index:integer;
   begin
-      writeln('No implementado');
-      degree:= 0;
+     degree:= 0;
+     node_index:= get_index(g,node);
+     for i:= 1 to g.num_nodes do begin
+       if g.matrix[i,node_index]<>'inf' then degree:= degree+1;
+       if g.matrix[node_index,i]<>'inf' then degree:= degree+1;
+     end;
   end;
 
 
 
   { Ejercicio 1.3 a) }
   function weighted_indegree(var g: edgeWeightedDigraph; node:string): integer;
+  var i,node_index:integer;
   begin
-      writeln('No implementado');
-      weighted_indegree:= 0;
+     weighted_indegree:= 0;
+     node_index:= get_index(g,node);
+     for i:= 1 to g.num_nodes do
+       if g.matrix[i,node_index]<>'inf' then
+         weighted_indegree:= weighted_indegree + StrToInt(g.matrix[i,node_index])
   end;
 
   
 { Ejercicio 1.3 b) }
 function weighted_outdegree(var g: edgeWeightedDigraph; node:string): integer;
+  var i,node_index:integer;
   begin
-    writeln('No implementado');
-    weighted_outdegree:= 0;
+     weighted_outdegree:= 0;
+     node_index:= get_index(g,node);
+     for i:= 1 to g.num_nodes do
+      begin
+       if g.matrix[node_index,i]<>'inf' then
+         weighted_outdegree:= weighted_outdegree + StrToInt(g.matrix[node_index,i]);
+      end;
   end;
 
 { Ejercicio 1.4 }
 function has_self_loops(g: edgeWeightedDigraph): boolean;
+  var i:integer;
   begin
-    writeln('No implementado');
     has_self_loops:= false;
+    i:=0;
+    while (not has_self_loops) and (i<g.num_nodes) do begin
+      i:= i+1;
+      has_self_loops:= g.matrix[i,i]<>'inf';
+    end;
 end;
 
 { Ejercicio 1.5 }
 function density(g: edgeWeightedDigraph): real;
+var i,j: integer;
+    edges: integer;
 begin
-  writeln('No implementado');
-  density:= 0.0;
+  edges:= 0;
+  for i:=1 to g.num_nodes do begin
+    for j:=1 to g.num_nodes do begin
+      if g.matrix[i,j]<>'inf' then edges:= edges+1;
+    end;
+  end;
+  density:= edges / (g.num_nodes*(g.num_nodes-1));
 end;
 
 
 { Ejercicio 1.6 }
 function is_complete(g: edgeWeightedDigraph): boolean;
+var i,j: integer;
 begin
-  writeln('No implementado');
-  is_complete:= false;
+  is_complete:= true;
+  for i:=1 to g.num_nodes do begin
+    for j:=1 to g.num_nodes do begin
+      if (i<>j) and (g.matrix[i,j]='inf') then begin
+        is_complete:= false;
+        break;
+      end;
+    end;
+  end;
 end;
 
 { Ejercicio 1.7 }
 procedure neighbors(g: edgeWeightedDigraph; node: string; var lista: tListaDoble);
+var i,node_index:integer;
 begin
-  writeln('No implementado');
   uListaEnlazadaDoble.initialize(lista); // Inicializa la lista de vecinos
+  node_index:= get_index(g,node); // Obtiene el índice del nodo en la matriz
+  for i:= 1 to g.num_nodes do begin
+    if (i<>node_index) and (g.matrix[node_index,i]<>'inf') then begin
+      insert_at_end(lista,g.node_labels[i]); // Agrega el nodo vecino a la lista
+    end;
+  end;
 end;
 
 
